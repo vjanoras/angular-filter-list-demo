@@ -8,8 +8,8 @@ import { HeroService } from './hero.service';
 
 @Component({
   selector: 'hero-filter-wdiget',
-  templateUrl: './heroes-filter.component.html',
-  styleUrls: [ './heroes-filter.component.css' ]
+  templateUrl: 'heroes-filter.component.html',
+  styleUrls: [ 'heroes-filter.component.css' ]
 })
 export class HeroFilterListComponent implements OnInit {
   hero: Hero;

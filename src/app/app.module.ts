@@ -34,7 +34,7 @@ import { AppRoutingModule } from './routes';
   declarations: [ 
       AppComponent,
       HeroesComponent,
-      HeroDetailComponent
+     // HeroDetailComponent
   ],
   bootstrap: [ 
     AppComponent 
