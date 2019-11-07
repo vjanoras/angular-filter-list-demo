@@ -1,0 +1,31 @@
+<div class="container list-container" [style.width]="options.width" [style.height]="options.height" >
+  <div class="form-group list-search">
+    <input type="text" class="form-control" (input)="applyFilter($event)">
+    <span class="fas fa-search form-control-feedback"></span>
+  </div>
+   <div style="height: 85%; width: 100%; overflow: auto;">
+      <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <ng-container *ngFor="let column of columns" >
+                <th scope="col">{{column.displayText}}</th>
+              </ng-container >
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of filteredDatasource;  let i=index;" (click)="onRowClick(i)" [class.selected]="i == selectedRow">
+              <td *ngFor="let column of columns" >
+                <span *ngIf="column.isDataColumn()">{{row[column.dataField]}}</span>
+                <span *ngIf="column.isActionColumn()">
+                    <ng-container *ngFor="let menu of row.actionMenu">
+                      <span class="fa {{menu.iconCss}}" tabIndex="0" (click)="onActionItemClick(row, menu.actionType)"></span>
+                      <span class="sr-only">{{menu.tooltip}}</span>
+                    </ng-container>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+
+</div>

@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "DG1S 1 Dashboard",
+    "type": "DGIS"
+  },
+  {
+    "id": 2,
+    "name": "RWHP Dashboard",
+    "type": "RWHP"
+  },
+  {
+    "id": 3,
+    "name": "HVIS Dashboard",
+    "type": "HVIS"
+  },
+  {
+    "id": 4,
+    "name": "DG1S 2 Dashboard" ,
+    "type": "DGIS"
+  },
+  {
+    "id": 5,
+    "name": "DG1S 3 Dashboard" ,
+    "type": "DGIS"
+  },
+  {
+    "id": 6,
+    "name": "DG1S 5 Dashboard" ,
+    "type": "DGIS"
+  },
+  {
+    "id": 7,
+    "name": "DG1S 6 Dashboard" ,
+    "type": "DGIS"
+  },
+  {
+    "id": 8,
+    "name": "DG1S 7 Dashboard" ,
+    "type": "DGIS"
+  },
+  {
+    "id": 9,
+    "name": "DG1S 8 Dashboard" ,
+    "type": "DGIS"
+  },
+  {
+    "id": 10,
+    "name": "DG1S 9 Dashboard" ,
+    "type": "DGIS"
+  }
+]

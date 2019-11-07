@@ -1,0 +1,29 @@
+<!-- <mat-card class="card">
+  <mat-card-header class="card-header" (click)="isCollapse = !isCollapse">
+    <mat-card-title>      
+      <i class="fas {{isCollapse ? 'fa-plus' : 'fa-minus'}} fa-xs card-title-icon"></i>
+      {{title}}
+    </mat-card-title>
+    <mat-card-subtitle *ngIf="subTitle">{{subTitle}}</mat-card-subtitle>
+  </mat-card-header>
+  
+  <mat-card-content class="card-body" *ngIf="!isCollapse">
+    <ng-content></ng-content>
+  </mat-card-content>
+  
+</mat-card> -->
+
+<ngb-accordion #acc="ngbAccordion" class="card"  activeIds="{{expand ? id : ''}}">
+  <ngb-panel [id]="id">
+    <ng-template ngbPanelHeader>
+      <div class="card-header" (click)="toggle(acc)" 
+        tabIndex="1" (keydown)="onKeydown($event, acc)" >
+          <i class="fas {{expand ? 'fa-minus' : 'fa-plus' }} fa-xs card-title-icon"></i>
+          {{title}}
+      </div>
+    </ng-template>
+    <ng-template ngbPanelContent >
+       <ng-content ></ng-content>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>

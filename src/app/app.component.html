@@ -1,0 +1,53 @@
+<h1> Simple Filter List Widget </h1>
+<br/>
+
+<div class="row">
+
+  <label>
+
+    <input  type="checkbox" 
+      (focus)="onFocus(true)"
+      (blur)="onFocus(false)"/>
+      some checkbox
+    </label>     
+
+  <div class="col-lg-12">
+    <div class="col-lg-12 widget-box">
+      <h2>Dashboard 2
+        <i class="fa fa-question-circle color-blue" aria-hidden="true"></i>
+        <i class="fa fa-play-circle  color-blue" aria-hidden="true"></i>
+      </h2>
+      <div class="row pt-3 dashboard-flex-container">
+        <div class="col dashboard-flex-item">
+
+          <img *ngIf="!showNotFound" class="col-lg-12" style="border: solid;" src="moreinfo3.PNG" (error)="errorHandler($event)"/>
+          
+          <div *ngIf="showNotFound" class="col-lg-12" style="text-align: center;    display: flex; flex-direction: column">
+            <i class="fa fa-file-image fa-5x" aria-hidden="true"></i>
+            <span class="">Not found</span>
+          </div>
+          
+          <div class="text-center pt-2"><b>Last Updated:</b>10/05/2018</div>
+          
+          <div class="text-center pt-4">
+            <button class="btn btn-primary" type="submit">View Dashboard</button>
+          </div>
+        
+        </div>
+        
+        <div class="col dashboard-flex-item">  
+          <div class="more-info-box">
+
+            <div class="col-lg-12 " *ngFor = "let info of moreInfoContent">    
+              <h4>{{info.title}}</h4>
+              <div class="" [innerHTML]="info.content" ></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

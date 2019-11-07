@@ -1,0 +1,52 @@
+<h1> Simple Filter List Widget </h1>
+<br/>
+
+<div class="row">
+  <div class="col summary-tab">
+    <div class="row">
+      <div class="col summary-icon">
+        <!-- <i class="fa fa-tachometer" aria-hidden="true"></i> -->
+        <i class="fas fa-tachometer-alt fa-3x"></i>
+      </div>
+      <div class="col summary-info">
+        <h4>5</h4>
+        <h4>All</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-4">
+    <pfm-filter-list-widget></pfm-filter-list-widget>
+  </div>
+  
+  <div class="col-lg-8">
+    <div class="col-lg-12 widget-box">
+      <h2>Dashboard 1 
+        <i class="fa fa-question-circle color-blue" aria-hidden="true"></i>
+        <i class="fa fa-play-circle  color-blue" aria-hidden="true"></i>
+      </h2>
+      <div class="row pt-3">
+        <div class="col dashboardInfoCont">
+          <img *ngIf="!showNotFound" class="col-lg-12" style="border: solid;" src="moreinfo3.PNG" (error)="errorHandler($event)"/>
+          <div *ngIf="showNotFound" class="col-lg-12" style="text-align: center; display: flex; flex-direction: column">
+            <i class="fa fa-file-image fa-5x" aria-hidden="true"></i>
+            <span class="">Not found</span>
+          </div>
+          <div class="text-center pt-2"><b>Last Updated:</b>10/05/2018</div>
+          <div class="text-center pt-4">
+            <button class="btn btn-primary" type="submit">View Dashboard</button>
+          </div>
+        </div>
+        <div class="col flex-containter">    
+            <div class="col-lg-12 flex-item" *ngFor = "let info of moreInfoContent">    
+              <h4>{{info.title}}</h4>
+              <div  [innerHTML]="info.content" ></div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

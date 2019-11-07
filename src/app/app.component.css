@@ -1,0 +1,132 @@
+p {
+  font-family: Lato;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+
+.widget-box {
+    border: 3px solid rgb(99, 156, 231);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    height: 500px;
+    display: flex;
+    flex-flow: wrap;
+}
+
+
+.summary-tab {
+  height: 80px;
+  max-width: 100%;
+  padding: 5px 10px;
+  background-color: #2276bf;
+  color: white;
+  cursor: pointer;
+
+}
+
+.summary-tab:hover, .summary-tab.selected  {
+  background-color: #084e8c;
+}
+
+
+.summary-tab .row {
+    margin: 0;
+  }
+
+.summary-tab .summary-info {
+  text-align: right;
+}
+
+.summary-tab .summary-icon {
+      padding: 10px 0;
+}
+/* 
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.summary-content {
+    width:100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.more-info-box {
+  display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+} */
+
+
+
+.dashboard-flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  border: 4px solid #1f5aa7;
+}
+
+.dashboard-flex-item {
+  flex-shrink: 1;
+  border: 3px solid #19c583;
+  padding: 10px;
+}
+
+
+.more-info-item {
+  position: absolute;
+}
+
+.more-info-box {
+  max-height: -webkit-fill-available;
+  overflow:auto;
+}
+
+
+.more-info-row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.more-info-column {
+  /* This will make it work in Firefox >= 35.0a1 */
+  min-height: 0;
+  flex-basis: 50%;
+}
+
+.more-info-content {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/*
+ *  STYLE 4
+ */
+
+.more-info-box::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(20, 87, 211, 0.3);
+    background-color: #F5F5F5;
+}
+
+.more-info-box::-webkit-scrollbar
+{
+    width: 5px;
+    background-color: #F5F5F5;
+}
+
+.more-info-box::-webkit-scrollbar-thumb
+{
+    background-color: #000000;
+    border: 2px solid #555555;
+}
