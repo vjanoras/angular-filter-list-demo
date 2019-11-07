@@ -35,13 +35,3 @@ export class PfmAccordionComponent {
   }
   
 }
-
-// export declare enum KeyCode {
-//     Tab = 9,
-//     Enter = 13,
-//     Space = 32,
-//     UpArrow = 38,
-//     RightArrow = 39,
-//     DownArrow = 40,
-//     LeftArrow = 37
-// }
