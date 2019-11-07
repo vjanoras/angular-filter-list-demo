@@ -5,7 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { PfmListModule } from "./list/list.module";
+import { HelloComponent } from './hello.component';
+import { SearchComponent } from './search.component';
+import { EditComponent } from './edit.component';
+
+
+import { ListModule } from "./widget/list.module";
 import { AppRoutingModule } from './routes';
 
 @NgModule({
@@ -14,11 +19,14 @@ import { AppRoutingModule } from './routes';
     FormsModule, 
     ReactiveFormsModule,
     HttpClientModule,
-    
-    PfmListModule
+    AppRoutingModule,    
+    ListModule
   ],
   declarations: [ 
-      AppComponent
+      AppComponent,
+      HelloComponent,
+      SearchComponent,
+      EditComponent
   ],
   bootstrap: [ 
     AppComponent 

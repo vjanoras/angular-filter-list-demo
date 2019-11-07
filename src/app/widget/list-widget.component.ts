@@ -2,7 +2,8 @@ import {
   Component, 
   Input,
   Output,
-  EventEmitter
+  EventEmitter,
+  OnInit
 } from "@angular/core";
 
 import { 
@@ -22,7 +23,7 @@ import {
   styleUrls: [ "list-widget.css"]
   
 })
-export class ListWidgetComponent {
+export class ListWidgetComponent implements OnInit {
 
   @Input()
   public options: ListOptions = new ListOptions();
@@ -57,44 +58,25 @@ export class ListWidgetComponent {
   public selectedRow: number;
   
   constructor(private http: HttpClient) {
-    this.columns.push(new ListColumn({ 
-        dataField: "name",           
-        displayText: "All Dashboards",
-        enableFiltering: true,
-        columnType: ListColumnType.Data
-    }));
+   
+  }
 
-    this.columns.push(new ListColumn({ 
-        dataField: "type",           
-        displayText: "Type",
-        enableFiltering: true,
-        columnType: ListColumnType.Data
-    }));
-    
-    this.columns.push(new ListColumn({ 
-        displayText: "Actions",
-        enableFiltering: true,
-        columnType: ListColumnType.Actions,
-        actionMenu: [ {
-          tooltip: "add dashboard to favorite",
-          actionType: "favorite",
-          destination: "",
-          iconCss: "fal fa-star"
-        },
-        {
-          tooltip: "view dashboard",
-          actionType: "view",
-          destination: "",
-          iconCss: "fal fa-eye"
-        }]
-    }));
+  ngOnInit(): void {
+    this.bind();
+  }
 
-    this.http.get('../assets/test-data.json')
+
+  bind() {
+    if (this.options.serviceUrl) {
+      this.http.get(this.options.serviceUrl)
           .subscribe((response: any) => {
             this.datasource = response;
-          });
+          }, 
+          (rejectResponse) => {
+            console.log("Error while getting datasource for list widget", rejectResponse);
+        });
 
-    this.options.filterBy = [ "name", "type"];
+    }
   }
 
   applyFilter(event: any) {

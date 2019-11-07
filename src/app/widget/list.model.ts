@@ -1,5 +1,7 @@
 export class ListOptions {
   filterBy: string[] = [];
+  sortBy: string;
+  serviceUrl: string;
 }
 
 export interface IIconActionItem {

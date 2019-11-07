@@ -1,10 +1,8 @@
 <h2> {{title}}</h2>
 <br/>
-
-<!-- <pfm-accordion title="Test 1" >
-
-  <p>Hello World!</p>
-</pfm-accordion> -->
-
-<pfm-filter-list-widget></pfm-filter-list-widget>
-
+<nav>
+  <a routerLink="/list" routerLinkActive="active">List</a>
+  <a routerLink="/hello" routerLinkActive="active">Hello</a>
+</nav>
+<hr>
+<router-outlet></router-outlet>

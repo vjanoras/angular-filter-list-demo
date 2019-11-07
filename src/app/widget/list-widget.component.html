@@ -30,9 +30,6 @@
                       <span class="sr-only">{{menu.tooltip}}</span>
                     </ng-container>
                 </span>
-                <span *ngIf="column.isLinkColumn()">
-                  <a routerLink="{{row[column.url]}}" routerLinkActive="active">{{row[column.dataField]}}</a>
-                </span>
               </td>
             </tr>
           </tbody>
