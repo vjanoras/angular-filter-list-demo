@@ -4,21 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 
-// Imports for loading & configuring the in-memory web api
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './heroes/in-memory-data.service';
-
-
-
-import { HeroFilterListComponent} from './heroes/heroes-filter.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './heroes/hero-detail.component';
-import { HeroService } from './heroes/hero.service';
-
-
-
 import { AppComponent } from './app.component';
-import { PfmAccordionModule } from "./accordion-card/accordion-card.module";
 import { PfmListModule } from "./list/list.module";
 import { AppRoutingModule } from './routes';
 
@@ -26,10 +12,10 @@ import { AppRoutingModule } from './routes';
   imports:      [ 
     BrowserModule, 
     FormsModule, 
+    ReactiveFormsModule,
     HttpClientModule,
-    PfmAccordionModule, 
-    PfmListModule,
-    ReactiveFormsModule
+    
+    PfmListModule
   ],
   declarations: [ 
       AppComponent
