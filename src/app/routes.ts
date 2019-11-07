@@ -5,12 +5,13 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailComponent } from './heroes/hero-detail.component';
 import { HeroFilterListComponent } from './heroes/heroes-filter.component';
 
-import { SearchComponent } from "./search.component"
+import { SearchComponent } from "./search.component";
+import { EditComponent } from "./edit.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/search', pathMatch: 'full' },
-  { path: 'search', component: HeroFilterListComponent },
-  { path: 'edit/:id', component: HeroDetailComponent }
+  { path: 'search', component: SearchComponent },
+  { path: 'edit/:id', component: EditComponent }
 ];
 
 @NgModule({
