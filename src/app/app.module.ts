@@ -32,9 +32,7 @@ import { AppRoutingModule } from './routes';
     ReactiveFormsModule
   ],
   declarations: [ 
-      AppComponent,
-      HeroesComponent,
-     // HeroDetailComponent
+      AppComponent
   ],
   bootstrap: [ 
     AppComponent 
