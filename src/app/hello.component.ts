@@ -42,7 +42,7 @@ export class HelloComponent implements OnInit {
     // option 2: load from config (base64)
     this.getImage2().subscribe(
       (data: any) => {
-        let objectURL = 'data:image/jpeg;base64,' + data.image;
+        let objectURL = 'data:image/jpeg;base64,' + data.gif;
         this.thumbnail2 = this.sanitizer.bypassSecurityTrustUrl(objectURL);
         console.log('option2', this.thumbnail2);
       },
@@ -51,7 +51,8 @@ export class HelloComponent implements OnInit {
   }
 
   getImage() {
-    return this.httpClient.get('/assets/testimage.jpeg', {
+    //return this.httpClient.get('/assets/testimage.jpeg', {
+    return this.httpClient.get('/assets/yellowExclaim/gif', {
       responseType: 'blob',
     });
   }
