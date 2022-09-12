@@ -51,37 +51,63 @@ export class ListWidgetComponent implements OnInit {
   ngOnInit(): void {
     this.bind();
 
-    var jsonObj = {
-      ErrorPage: {
-        PASS: 2,
-      },
-      Automated: {
-        PASS: 17,
-        FAIL: 31,
-      },
-      'HomePage(Landing page)': {
-        PASS: 1,
-        FAIL: 6,
-      },
-    };
+    // var jsonObj = {
+    //   ErrorPage: {
+    //     PASS: 2,
+    //   },
+    //   Automated: {
+    //     PASS: 17,
+    //     FAIL: 31,
+    //   },
+    //   'HomePage(Landing page)': {
+    //     PASS: 1,
+    //     FAIL: 6,
+    //   },
+    // };
 
-    var arr = [];
+    // var arr = [];
 
-    Object.keys(jsonObj).map((item) => {
-      console.log(item);
-      arr.push({
-        category: item,
-        ...jsonObj[item],
-      });
-    });
+    // Object.keys(jsonObj).map((item) => {
+    //   console.log(item);
+    //   arr.push({
+    //     category: item,
+    //     ...jsonObj[item],
+    //   });
+    // });
 
-    console.log(arr);
+    // console.log(arr);
 
     this.http.get('../assets/sr.json').subscribe(
       (response: any) => {
-        Object.keys(response).map((item) => {
-          console.log(item);
+        var arr = [];
+        Object.keys(response.sectionStatus).map((section) => {
+          //console.log(section);
+
+          var sectionHeader = response.sectionStatus[section];
+
+          if (sectionHeader.showOnStatusPage == true) {
+            //console.log(section);
+
+            Object.keys(sectionHeader.groups).map((group) => {
+              var sectionGroup = sectionHeader.groups[group];
+
+              //console.log(sectionGroup);
+
+              Object.keys(sectionGroup.sections).map((item) => {
+                var sectionGroupItem = sectionGroup.sections[item];
+                console.log(sectionGroupItem);
+
+                arr.push({
+                  section: sectionHeader.displayValue,
+                  sectionGroup: sectionGroup.displayValue,
+                  ...sectionGroupItem,
+                });
+              });
+            });
+          }
         });
+
+        console.log(arr);
 
         //this.flattenJson(response.sectionStatus);
       },
@@ -92,6 +118,34 @@ export class ListWidgetComponent implements OnInit {
         );
       }
     );
+  }
+
+  getTree(array, root) {
+    var o = {};
+    array.forEach(function (a) {
+      o[a.DescId] = Object.assign({}, a, o[a.DescId]);
+      o[a.ParentId] = o[a.ParentId] || {};
+      o[a.ParentId].children = o[a.ParentId].children || [];
+      o[a.ParentId].children.push(o[a.DescId]);
+    });
+    return o[root].children;
+  }
+
+  getLeafes(tree) {
+    var result = [];
+    tree.forEach(
+      (function iter(temp) {
+        return function ({ DescId, Desc, Type, children }) {
+          var t = temp.concat({ DescId, Desc, Type });
+          if (!children) {
+            result.push(t);
+            return;
+          }
+          children.forEach(iter(t));
+        };
+      })([])
+    );
+    return result;
   }
 
   bind() {
