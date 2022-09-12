@@ -51,83 +51,39 @@ export class ListWidgetComponent implements OnInit {
   ngOnInit(): void {
     this.bind();
 
-    var nodes = [
-        {
-          DescId: '1',
-          Desc: 'Parent 1',
-          ParentId: 'null',
-          Order: 1,
-          Type: 'A',
-          Parent: null,
-          Depth: 0,
-        },
-        {
-          DescId: '1.1',
-          Desc: 'Child 1',
-          ParentId: '1',
-          Order: 1,
-          Type: 'B',
-          Parent: 'Parent 1',
-          Depth: 1,
-        },
-        {
-          DescId: '1.2',
-          Desc: 'Child 2',
-          ParentId: '1',
-          Order: 2,
-          Type: 'B',
-          Parent: 'Parent 1',
-          Depth: 1,
-        },
-        {
-          DescId: '1.1.1',
-          Desc: 'Grand Child 1',
-          ParentId: '1.1',
-          Order: 1,
-          Type: 'C',
-          Parent: 'Child 1',
-          Depth: 2,
-        },
-        {
-          DescId: '1.1.1.1',
-          Desc: 'Great Grand Child 1',
-          ParentId: '1.1.1',
-          Order: 1,
-          Type: 'D',
-          Parent: 'Grand Child 1',
-          Depth: 3,
-        },
-        {
-          DescId: '2',
-          Desc: 'Parent 2',
-          ParentId: null,
-          Order: 2,
-          Type: 'A',
-          Parent: null,
-          Depth: 0,
-        },
-      ],
-      tree = this.getTree(nodes, null),
-      leaves = this.getLeafes(tree),
-      result = leaves.map((a) =>
-        a.reduce(
-          (o, { DescId, Desc, Type }) =>
-            Object.assign(o, {
-              [Type + 'DescId']: DescId,
-              [Type + 'Desc']: Desc,
-            }),
-          {}
-        )
-      );
+    var jsonObj = {
+      ErrorPage: {
+        PASS: 2,
+      },
+      Automated: {
+        PASS: 17,
+        FAIL: 31,
+      },
+      'HomePage(Landing page)': {
+        PASS: 1,
+        FAIL: 6,
+      },
+    };
 
-    // console.log(tree);
-    // console.log(leaves);
-    // console.log(result);
+    var arr = [];
+
+    Object.keys(jsonObj).map((item) => {
+      console.log(item);
+      arr.push({
+        category: item,
+        ...jsonObj[item],
+      });
+    });
+
+    console.log(arr);
 
     this.http.get('../assets/sr.json').subscribe(
       (response: any) => {
-        console.log(response);
-        this.flattenJson(response.sectionStatus);
+        Object.keys(response).map((item) => {
+          console.log(item);
+        });
+
+        //this.flattenJson(response.sectionStatus);
       },
       (rejectResponse) => {
         console.log(
@@ -227,57 +183,5 @@ export class ListWidgetComponent implements OnInit {
       console.log(row, type);
       e.preventDefault();
     }
-  }
-
-  flattenJson(data) {
-    var flatArray = [];
-    var flatObject = {};
-
-    for (var index = 0; index < data.length; index++) {
-      for (var prop in data[index]) {
-        var value = data[index][prop];
-
-        if (Array.isArray(value)) {
-          for (var i = 0; i < value.length; i++) {
-            for (var inProp in value[i]) {
-              flatObject[inProp] = value[i][inProp];
-            }
-          }
-        } else {
-          flatObject[prop] = value;
-        }
-      }
-      flatArray.push(flatObject);
-    }
-
-    console.log(flatArray);
-  }
-
-  getTree(array, root) {
-    var o = {};
-    array.forEach(function (a) {
-      o[a.DescId] = Object.assign({}, a, o[a.DescId]);
-      o[a.ParentId] = o[a.ParentId] || {};
-      o[a.ParentId].children = o[a.ParentId].children || [];
-      o[a.ParentId].children.push(o[a.DescId]);
-    });
-    return o[root].children;
-  }
-
-  getLeafes(tree) {
-    var result = [];
-    tree.forEach(
-      (function iter(temp) {
-        return function ({ DescId, Desc, Type, children }) {
-          var t = temp.concat({ DescId, Desc, Type });
-          if (!children) {
-            result.push(t);
-            return;
-          }
-          children.forEach(iter(t));
-        };
-      })([])
-    );
-    return result;
   }
 }
