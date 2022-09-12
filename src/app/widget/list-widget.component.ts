@@ -71,7 +71,7 @@ export class ListWidgetComponent implements OnInit {
     //   console.log(item);
     //   arr.push({
     //     category: item,
-    //     ...jsonObj[item],
+    //     ...jsonObj[item], 
     //   });
     // });
 
